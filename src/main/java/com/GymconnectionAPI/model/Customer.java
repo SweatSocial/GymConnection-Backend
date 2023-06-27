@@ -13,7 +13,7 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 @Entity
 @Table(name = "customers")
-public class Customers {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
