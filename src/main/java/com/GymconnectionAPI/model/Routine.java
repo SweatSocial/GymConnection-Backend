@@ -32,6 +32,4 @@ public class Routine {
     foreignKey = @ForeignKey(name = "FK_routines_customers"))
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Customer customer;
-
-
 }

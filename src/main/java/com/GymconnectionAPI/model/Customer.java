@@ -1,5 +1,6 @@
 package com.GymconnectionAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,6 +29,11 @@ public class Customer {
     private String district;
     @Column(name = "password",length =100,nullable = false)
     private String password;
+    @ManyToOne
+    @JoinColumn(name = "payment_id",nullable = false,
+            foreignKey = @ForeignKey(name = "FK_customers_payment"))
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Payment payment;
     //Informacion que se puede llenar despues
     private int department;
     private int smartphone;
