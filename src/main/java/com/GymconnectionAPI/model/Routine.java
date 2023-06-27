@@ -1,5 +1,6 @@
 package com.GymconnectionAPI.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,28 +8,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import java.awt.*;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "coachs")
-public class Coach {
+@Table(name = "routines")
+public class Routine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     //Columnas obligatorias al momento de registrarse
     @Column(name = "name",length =100,nullable = false)
     private String name;
-    @Column(name = "lastname",length =100,nullable = false)
-    private String lastname;
-    @Column(name = "address",length =100,nullable = false)
-    private String address;
-    @Column(name = "district",length =50,nullable = false)
-    private String district;
-    @Column(name = "password",length =100,nullable = false)
-    private String password;
-    //Informacion que se puede llenar despues
-    private int department;
-    private int smartphone;
+    @Column(name = "photo",nullable = false)
+    private Image photo;
+    @Column(name = "ejercicio",length =100,nullable = false)
+    private String ejercicio;
+    @ManyToOne
+    @JoinColumn(name = "customer_id",nullable = false,
+    foreignKey = @ForeignKey(name = "FK_routines_customers"))
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Customer customer;
+
+
 }
