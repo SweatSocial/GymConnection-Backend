@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 @Data
 @Builder
@@ -13,22 +12,26 @@ import org.springframework.data.annotation.Id;
 @AllArgsConstructor
 @Entity
 @Table(name = "coachs")
-public class Coach {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Coach extends User {
+
     //Columnas obligatorias al momento de registrarse
     @Column(name = "name",length =100,nullable = false)
     private String name;
     @Column(name = "lastname",length =100,nullable = false)
     private String lastname;
-    @Column(name = "address",length =100,nullable = false)
-    private String address;
+    @Column(name = "age")
+    private int age;
+    @Lob
+    @Column(name = "profile_image")
+    private byte[] profileImage;
+    @Column(name = "department",length =50,nullable = false)
+    private String department;
     @Column(name = "district",length =50,nullable = false)
     private String district;
+    @Column(name = "email", length = 100, nullable = false)
+    private String email;
     @Column(name = "password",length =100,nullable = false)
     private String password;
-    //Informacion que se puede llenar despues
-    private int department;
-    private int smartphone;
+    @Column(name = "phone",length =100,nullable = false)
+    private String phone;
 }
