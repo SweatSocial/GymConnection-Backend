@@ -1,5 +1,4 @@
 package com.GymconnectionAPI.service;
-import com.GymconnectionAPI.dto.CustomerDto;
 import  com.GymconnectionAPI.dto.PaymentDto;
 
 import java.util.List;
