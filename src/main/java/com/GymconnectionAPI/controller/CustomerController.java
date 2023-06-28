@@ -87,10 +87,17 @@ public class CustomerController {
         }
     }
 
-private void existsCustomerByEmailAndPhone(CustomerDto customerDto){
+    private void existsCustomerByEmailAndPhone(CustomerDto customerDto){
         if (customerRepository.existsByEmailAndPhone(customerDto.getEmail(), customerDto.getPhone())){
             throw new ValidationException("Ya existe un customer con el mismo email y/o phone");
         }
-}
+    }
 
 }
+
+
+
+
+
+
+

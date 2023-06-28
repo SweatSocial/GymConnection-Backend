@@ -13,6 +13,6 @@ public class PaymentDto {
     private Long id;
     private String option;
     private String name;
-    private LocalDate due_date;
+    private String due_date;
     private int security_code;
 }

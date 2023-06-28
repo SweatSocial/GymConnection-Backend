@@ -25,7 +25,7 @@ public class Payment {
     @Column(name = "name",length =100,nullable = false)
     private String name;
     @Column(name = "due_date",nullable = false)
-    private LocalDate due_date;
+    private String due_date;
     @Column(name = "security_code",nullable = false)
     private int security_code;
 }
