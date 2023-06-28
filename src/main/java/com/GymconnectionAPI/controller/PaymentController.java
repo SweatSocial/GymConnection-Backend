@@ -1,11 +1,10 @@
 package com.GymconnectionAPI.controller;
 
 
-import com.GymconnectionAPI.dto.CustomerDto;
 import com.GymconnectionAPI.dto.PaymentDto;
+import com.GymconnectionAPI.dto.RoutineDto;
 import com.GymconnectionAPI.exception.ValidationException;
 import com.GymconnectionAPI.model.Payment;
-import com.GymconnectionAPI.repository.CustomerRepository;
 import com.GymconnectionAPI.repository.PaymentRepository;
 import com.GymconnectionAPI.service.PaymentService;
 import org.modelmapper.ModelMapper;
@@ -61,6 +60,7 @@ public class PaymentController {
             throw new ValidationException("Request security_code is missing");
         }
     }
+
 
     private void existsPaymentById(PaymentDto paymentDto){
         if (!(paymentRepository.existsById(paymentDto.getId()))) {
