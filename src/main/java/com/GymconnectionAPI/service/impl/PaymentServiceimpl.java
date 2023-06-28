@@ -38,7 +38,6 @@ public class PaymentServiceimpl implements PaymentService {
     public PaymentDto updatePayment(Long id, PaymentDto paymentDto){
         Payment payment = paymentRepository.findById(id).orElseThrow(() -> new RuntimeException("Payment not found"));
 
-
         if(paymentDto.getOption() !=null && !paymentDto.getOption().equals(payment.getOption())){
             payment.setOption(paymentDto.getOption());
         }
@@ -53,7 +52,6 @@ public class PaymentServiceimpl implements PaymentService {
         }
         return EntityToDto(paymentRepository.save(payment));
     }
-
 
     private PaymentDto EntityToDto(Payment payment){
         return modelMapper.map(payment, PaymentDto.class);
