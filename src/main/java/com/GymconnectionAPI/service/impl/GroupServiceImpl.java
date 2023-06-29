@@ -2,10 +2,12 @@ package com.GymconnectionAPI.service.impl;
 
 import com.GymconnectionAPI.dto.GroupDto;
 import com.GymconnectionAPI.model.Coach;
+import com.GymconnectionAPI.model.Customer;
 import com.GymconnectionAPI.model.Group;
 import com.GymconnectionAPI.repository.CoachRepository;
 import com.GymconnectionAPI.repository.CustomerRepository;
 import com.GymconnectionAPI.repository.GroupRepository;
+import com.GymconnectionAPI.service.GroupService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class GroupServiceImpl {
+public class GroupServiceImpl implements GroupService {
     private GroupRepository groupRepository;
     private ModelMapper modelMapper;
     private CustomerRepository customerRepository;
@@ -23,9 +25,9 @@ public class GroupServiceImpl {
     @Autowired
     public GroupServiceImpl(GroupRepository groupRepository, CustomerRepository customerRepository, ModelMapper modelMapper, CoachRepository coachRepository){
         this.groupRepository = groupRepository;
-        this.customerRepository = customerRepository;
         this.modelMapper = modelMapper;
         this.coachRepository = coachRepository;
+        this.customerRepository = customerRepository;
     }
 
     public List<GroupDto> getAllGroups(){
@@ -37,6 +39,15 @@ public class GroupServiceImpl {
 
     public GroupDto createGroup(GroupDto groupDto){
         Group group = DtoToEntity(groupDto);
+        if(groupDto.getCoachId() != null){
+            Coach coach = coachRepository.findById(groupDto.getCoachId())
+                    .orElseThrow(() -> new RuntimeException("Coach not found"));
+            group.setCoach(coach);
+        }
+        if(groupDto.getCustomersIds() != null){
+            List<Customer> customers = customerRepository.findAllById(groupDto.getCustomersIds());
+            group.setCustomers(customers);
+        }
         return EntityToDto(groupRepository.save(group));
     }
 
