@@ -32,7 +32,7 @@ public class RoutineController {
         return routineService.getAllRoutines();
     }
 
-    @PostMapping("/newroutine")
+    @PostMapping("/routines")
     public ResponseEntity<RoutineDto> createRoutine(@RequestBody RoutineDto routineDto){
         validateRoutine(routineDto);
         return new ResponseEntity<>(routineService.createRoutine(routineDto), HttpStatus.CREATED);
@@ -46,7 +46,7 @@ public class RoutineController {
             throw new com.GymconnectionAPI.exception.ValidationException("Request ejercicio is missing");
         }
         if (routineDto.getCustomerId()==null){
-            throw new com.GymconnectionAPI.exception.ValidationException("Request custome id is missing");
+            throw new com.GymconnectionAPI.exception.ValidationException("Request customer id is missing");
         }
     }
 }
