@@ -2,10 +2,7 @@ package com.GymconnectionAPI.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
@@ -13,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "customers")
+@EqualsAndHashCode(callSuper=false)
 public class Customer extends User {
 
     //Columnas obligatorias al momento de registrarse
