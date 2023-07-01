@@ -1,16 +1,14 @@
+# Usa una imagen base de Java
+FROM adoptopenjdk:11-jre-hotspot
 
-#
-# Build stage
-#
-FROM maven:3.6.0-jdk-11-slim AS build
-COPY src /home/app/src
-COPY pom.xml /home/app
-RUN mvn -f /home/app/pom.xml clean package
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /app
 
-#
-# Package stage
-#
-FROM openjdk:11-jre-slim
-COPY --from=build /home/app/target/GymconnectionAPI-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
+# Copia el archivo JAR generado por Spring Boot en el directorio de trabajo
+COPY target/docker-spring-boot.jar app.jar
+
+# Expone el puerto en el que se ejecutará la aplicación
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/usr/local/lib/demo.jar"]
+
+# Comando para ejecutar la aplicación Spring Boot
+ENTRYPOINT ["java", "-jar", "app.jar"]
