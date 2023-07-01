@@ -1,9 +1,11 @@
-package com.GymconnectionAPI.controller;
+package com.GymconnectionAPI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"controller"})
 public class GymconnectionApiApplication {
 	public String PORT = System.getenv("PORT");
 	public static void main(String[] args) {
