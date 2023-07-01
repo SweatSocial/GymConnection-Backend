@@ -1,5 +1,5 @@
 # Usa una imagen base de Java
-FROM adoptopenjdk:11-jre-hotspot
+FROM adoptopenjdk:17-jre-hotspot
 
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
